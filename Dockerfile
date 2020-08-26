@@ -10,6 +10,9 @@ USER node
 COPY package.json package-lock.json ./
 RUN npm install
 
+COPY fallback.patch ./
+RUN cat *.patch | patch -p0
+
 COPY tsconfig.json ./
 COPY src/ ./src/
 RUN npm run build
