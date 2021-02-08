@@ -1,11 +1,11 @@
---- node_modules/mx-puppet-bridge/lib/src/remoteeventhandler.js.old	2020-08-26 19:05:04.308598240 +0200
-+++ node_modules/mx-puppet-bridge/lib/src/remoteeventhandler.js	2020-08-26 19:04:28.189953439 +0200
-@@ -275,7 +275,7 @@
+--- node_modules/mx-puppet-bridge/lib/src/remoteeventhandler.js	1985-10-26 09:15:00.000000000 +0100
++++ node_modules/mx-puppet-bridge/lib/src/remoteeventhandler.js	2021-02-08 19:58:07.166334237 +0100
+@@ -310,7 +310,7 @@
                              }
-                             const bodyParts = info.message.body.split("\n");
-                             bodyParts[0] = `${info.message.emote ? "* " : ""}<${info.user.mxid}> ${bodyParts[0]}`;
+                             const bodyParts = this.preprocessBody(info.message.body).split("\n");
+                             bodyParts[0] = `${info.message.emote ? "* " : ""}<${this.preprocessBody(info.user.mxid)}> ${bodyParts[0]}`;
 -                            send.body = `${bodyParts.map((l) => `> ${l}`).join("\n")}\n\n${send.body}`;
-+                            //send.body = `${bodyParts.map((l) => `> ${l}`).join("\n")}\n\n${send.body}`;
++							//send.body = `${bodyParts.map((l) => `> ${l}`).join("\n")}\n\n${send.body}`;
                              const matrixReplyRegex = /^<mx-reply>.*<\/mx-reply>/gs;
                              const messageWithoutNestedReplies = (_a = info.message.formattedBody) === null || _a === void 0 ? void 0 : _a.replace(matrixReplyRegex, "");
                              const richHeader = `<mx-reply><blockquote>
